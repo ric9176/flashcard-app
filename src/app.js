@@ -26,4 +26,22 @@ const App = (props) => {
   </div>);
 };
 
-ReactDOM.render(<App> Hello react! </App>, document.getElementById('root'));
+const Sidebar = React.createClass({
+  render() {
+    let props = this.props;
+
+    return (<div className='sidebar'>
+    <h2>All decks:</h2>
+      <ul>
+        {props.decks.map((deck, i) =>
+          <li key={i}> {deck.name} </li>
+        )}
+      </ul>
+        {props.addingDeck && <input ref='add' />}
+    </div>);
+  }
+});
+
+ReactDOM.render(<App>
+  <Sidebar decks={[{ name: 'Deck 1'}]} addingDeck={false} />
+ </App>, document.getElementById('root'));
